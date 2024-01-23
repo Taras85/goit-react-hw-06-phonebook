@@ -2,19 +2,29 @@ import { createStore } from 'redux';
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'contacts':
+    case 'addContacts':
       return {
         ...state,
         contacts: [...state.contacts, action.payload]}
-        
-      ;
+        ;
+    
+    case 'deleteContacts':
+            return {
+        ...state, contacts:action.payload
+        }
+        ;
+    case 'filter':
+      return {
+        ...state, filter:action.payload
+        }
+        ;
 
     default:
       return state;
   }
 };
 
-const store = createStore(reducer, {
+export const store = createStore(reducer, {
   filter: '',
   contacts: [
     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -26,13 +36,22 @@ const store = createStore(reducer, {
 
 console.log('Store:', store);
 
-store.dispatch({
-  type: 'contacts',
-  payload: {
-    id: 'id-5',
-    name: 'Taras Panasenko',
-    number: '335-36-85'
-  },
-});
+// store.dispatch({
+//   type: 'contacts',
+//   payload:
+//   {
+//     id: 'id-5',
+//     name: 'Taras Panasenko',
+//     number: '335-36-85',
+//   },
+// });
 
-console.log(store.getState());
+// store.dispatch({
+//   type: 'filter',
+//   payload: 'banana',
+//     payload: '',
+// });
+
+// console.log(store.getState());
+
+// export default store
