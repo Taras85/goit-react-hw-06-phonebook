@@ -5,6 +5,7 @@ import { Filter } from './Filter/Filter';
 import s from './App.module.css';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
+import { changeFilter, createContact, deleteContact } from 'store/actions';
 
 // const defaultContacts = [
 //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -20,9 +21,7 @@ const App = () => {
   //   JSON.parse(localStorage.getItem('contacts')) ?? defaultContacts
   // );
 
-  const {filter, contacts} = useSelector((state)=>state)
-
-
+  const {filter, contacts} = useSelector((state)=>state.phonebook)
   const dispatch = useDispatch()
 
 
@@ -38,11 +37,15 @@ const addContact = (name, number) => {
       i.number === contact.number
   )
     ? alert(`${name} is already in contacts`)
-    : dispatch({type:'addContacts', payload: contact});
-};
+    : dispatch(createContact(contact));
+  };
+  
+    const onDeleteContact = id => {
+    dispatch(deleteContact(id, contacts))
+  };
 
-const onChangeFilter = e => {
-  dispatch({type:'filter',payload: e.target.value});
+  const onChangeFilter = e => {
+  dispatch(changeFilter(e.target.value));
 };
 
 const filteredContacts = () => {
@@ -51,9 +54,7 @@ const filteredContacts = () => {
   );
 };
 
-  const onDeleteContact = id => {
-    dispatch({type:'deleteContacts', payload: contacts.filter(contact => contact.id !== id)})
-  };
+
   
 
 

@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import s from './Filter.module.css';
 
 export function Filter({ value, onChangeFilter }) {
+
+  
   return (
     <div className={s.filterContainer}>
       <h3 >Find contacts by name</h3>
@@ -12,6 +14,7 @@ export function Filter({ value, onChangeFilter }) {
         name="filter"
         value={value}
         onChange={onChangeFilter}
+
       />
     </div>
   );
