@@ -3,7 +3,7 @@ import ContactForm  from './ContactForm/ContactForm';
 import {ContactList}  from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 import s from './App.module.css';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeFilter, createContact, deleteContact } from 'store/actions';
 
@@ -26,19 +26,30 @@ const App = () => {
 
 
 const addContact = (name, number) => {
-  const contact = {
-    id: nanoid(),
-    name,
-    number,
-  };
+  // const contact = {
+    // id: nanoid(),
+    // name,
+    // number,
+  // };
   contacts.some(
     i =>
-      i.name.toLowerCase() === contact.name.toLowerCase() ||
-      i.number === contact.number
+      // i.name.toLowerCase() === contact.name.toLowerCase() ||
+    // i.number === contact.number
+      i.name.toLowerCase() === name.toLowerCase()
   )
-    ? alert(`${name} is already in contacts`)
-    : dispatch(createContact(contact));
+    ? alert(`${name}  is already in contacts`)
+    : contacts.some(
+    i =>
+      i.number === number
+  )
+    ? alert(`${number} is already in contacts number`)
+    :
+      dispatch(createContact(name, number));
   };
+
+
+ 
+
   
     const onDeleteContact = id => {
     dispatch(deleteContact(id, contacts))

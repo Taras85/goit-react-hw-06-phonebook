@@ -1,3 +1,0 @@
-export const ADDCONTACTS = 'ADDCONTACTS'
-export const DELETECONTACTS = 'DELETECONTACTS'
-export const FILTER = 'FILTER'
