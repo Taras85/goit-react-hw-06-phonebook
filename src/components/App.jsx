@@ -5,7 +5,9 @@ import { Filter } from './Filter/Filter';
 import s from './App.module.css';
 // import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeFilter, createContact, deleteContact } from 'store/actions';
+// import {    deleteContact } from 'store/actions';
+import { changeFilter, createContact, deleteContact } from 'store/phonebookSlice';
+
 
 // const defaultContacts = [
 //   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -22,6 +24,7 @@ const App = () => {
   // );
 
   const {filter, contacts} = useSelector((state)=>state.phonebook)
+
   const dispatch = useDispatch()
 
 
